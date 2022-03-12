@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 
-export function useTypingGame({ startTime }) {
+export function useTypingGame({ defaultTime }) {
   const [text, setText] = useState("");
-  const [timeRemaining, setTimeRemaining] = useState(startTime);
+  const [startTime, setStartTime] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(defaultTime);
   const [isTimeRunning, setIsTimeRunning] = useState(false);
   const [wordCount, setWordCount] = useState(0);
 
@@ -13,6 +14,11 @@ export function useTypingGame({ startTime }) {
     setText(value);
   }
 
+  function handleStartTime(e) {
+    const { value } = e.target;
+    setStartTime(value);
+  }
+
   function getWordCount(textInput) {
     const words = textInput.trim().split(" ");
     return words.filter((word) => word !== "").length;
@@ -21,13 +27,14 @@ export function useTypingGame({ startTime }) {
   function start() {
     setText("");
     setWordCount(0);
-    setTimeRemaining(startTime);
+    setTimeRemaining(startTime > 0 ? startTime : defaultTime);
     setIsTimeRunning(true);
   }
 
   function end() {
     setWordCount(getWordCount(text));
     setIsTimeRunning(false);
+    setTimeRemaining(startTime > 0 ? startTime : defaultTime);
   }
 
   function startTimer() {
@@ -48,6 +55,8 @@ export function useTypingGame({ startTime }) {
   return {
     text,
     handleText,
+    startTime,
+    handleStartTime,
     timeRemaining,
     isTimeRunning,
     wordCount,

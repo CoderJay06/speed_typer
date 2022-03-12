@@ -9,12 +9,14 @@ export default function App() {
   const {
     text,
     handleText,
+    startTime,
+    handleStartTime,
     timeRemaining,
     isTimeRunning,
     wordCount,
     start,
     textBoxRef
-  } = useTypingGame({ startTime: 5 });
+  } = useTypingGame({ defaultTime: 5 });
 
   function handleToggle() {
     setIsToggled((prevState) => !prevState);
@@ -40,6 +42,17 @@ export default function App() {
         disabled={!isTimeRunning}
         ref={textBoxRef}
       />
+      <select
+        defaultValue={"-- Choose start time --"}
+        disabled={isTimeRunning}
+        onChange={handleStartTime}
+      >
+        <option value="-- Choose start time --">-- Choose start time --</option>
+        <option value={5}>5</option>
+        <option value={10}>10</option>
+        <option value={15}>15</option>
+        <option value={20}>20</option>
+      </select>
       <h4>Time remaining: {timeRemaining}</h4>
       <button
         className={`btn-${selectedTheme}`}
