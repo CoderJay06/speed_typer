@@ -1,4 +1,70 @@
-.App {
+body {
   font-family: sans-serif;
   text-align: center;
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+  font-family: "Roboto Mono", monospace;
+  /* height: 100vh;
+  width: 100vw; */
+}
+
+.dark-theme,
+.light-theme {
+  height: 100vh;
+  width: 100vw;
+}
+
+.dark-theme {
+  background: #000;
+  color: #00b800;
+}
+
+.textbox-dark {
+  background: #00b800;
+}
+
+.btn-dark {
+  background: #2b942b;
+}
+
+.light-theme {
+  background: rgba(255, 255, 255, 0.836);
+  color: #000;
+  color: #723565;
+}
+
+.textbox-light {
+  background: #e7bede;
+}
+
+.btn-light {
+  background: #e4a7d7;
+}
+
+textarea,
+button {
+  border: none;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 90%;
+  height: 200px;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  padding: 1em 2.5em;
+  font-weight: bolder;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
 }
