@@ -1,10 +1,20 @@
 import "./styles.css";
 import React, { useState } from "react";
 import Switch from "react-switch";
+import { useTypingGame } from "./useTypingGame";
 
 export default function App() {
   const [isToggled, setIsToggled] = useState(false);
   const [theme, setTheme] = useState("dark");
+  const {
+    text,
+    handleText,
+    timeRemaining,
+    isTimeRunning,
+    wordCount,
+    start,
+    textBoxRef
+  } = useTypingGame({ startTime: 5 });
 
   function handleToggle() {
     setIsToggled((prevState) => !prevState);
@@ -25,10 +35,20 @@ export default function App() {
       <textarea
         className={`textbox-${selectedTheme}`}
         placeholder="Start typing!"
+        onChange={handleText}
+        value={text}
+        disabled={!isTimeRunning}
+        ref={textBoxRef}
       />
-      <h4>Time remaining: 0</h4>
-      <button className={`btn-${selectedTheme}`}>Start</button>
-      <h1>Word count: 0</h1>
+      <h4>Time remaining: {timeRemaining}</h4>
+      <button
+        className={`btn-${selectedTheme}`}
+        onClick={start}
+        disabled={isTimeRunning}
+      >
+        Start
+      </button>
+      <h1>Word count: {wordCount}</h1>
     </div>
   );
 }
