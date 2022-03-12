@@ -9,6 +9,10 @@ body {
   width: 100vw; */
 }
 
+.app {
+  padding-top: 10%;
+}
+
 .dark-theme,
 .light-theme {
   height: 100vh;
@@ -50,7 +54,7 @@ button {
 
 textarea {
   width: 90%;
-  height: 200px;
+  height: 250px;
   margin: 0 auto;
   font-weight: bold;
   font-size: 1.2rem;
